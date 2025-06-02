@@ -4,19 +4,18 @@ export default async function Dashboard() {
   const headersList = await headers();
   const featureFlag = headersList.get("x-feature-header");
 
-  console.log("Feature flag:", featureFlag);
-  const showNewHeader = featureFlag === "new";
+  const showNewFeature = featureFlag === "new";
 
   return (
-    <main>
-      {showNewHeader ? (
-        <h1 className="text-4xl font-bold text-green-600">
-          New dashboard header
-        </h1>
-      ) : (
-        <h1 className="text-2xl">Dashboard</h1>
-      )}
+    <main className="p-4">
+      <h1 className="text-2xl">Dashboard</h1>
       <p>Welcome to the dashboard!</p>
+
+      {showNewFeature && (
+        <p className="mt-2 text-green-600 font-medium">
+          You’re seeing a new feature enabled by our feature flag!
+        </p>
+      )}
     </main>
   );
 }

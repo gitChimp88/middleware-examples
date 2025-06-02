@@ -12,7 +12,7 @@ export function middleware(request) {
   // Check authentication
   const unauthenticatedUser = !isAuthenticated(request);
   if (unauthenticatedUser) {
-    return response.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return response;
